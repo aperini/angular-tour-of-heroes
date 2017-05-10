@@ -9,8 +9,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms"); // <-- NgModel lives here
-var router_1 = require("@angular/router");
 var app_component_1 = require("./app.component");
+var app_routing_module_1 = require("./app-routing.module");
 var heroes_component_1 = require("./heroes.component");
 var dashboard_component_1 = require("./dashboard.component");
 var hero_detail_component_1 = require("./hero-detail.component");
@@ -31,25 +31,7 @@ AppModule = __decorate([
         imports: [
             platform_browser_1.BrowserModule,
             forms_1.FormsModule,
-            router_1.RouterModule.forRoot([
-                {
-                    path: 'heroes',
-                    component: heroes_component_1.HeroesComponent
-                },
-                {
-                    path: 'dashboard',
-                    component: dashboard_component_1.DashboardComponent
-                },
-                {
-                    path: 'detail/:id',
-                    component: hero_detail_component_1.HeroDetailComponent
-                },
-                {
-                    path: '',
-                    redirectTo: '/dashboard',
-                    pathMatch: 'full'
-                }
-            ])
+            app_routing_module_1.AppRoutingModule
         ],
         //Every component must be declared in one—and only one—Angular module (in this case, AppModule).
         declarations: [
