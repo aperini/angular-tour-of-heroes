@@ -1,15 +1,19 @@
-import { NgModule }      from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms'; // <-- NgModel lives here
-import { RouterModule } from '@angular/router';
-
-import { AppComponent }  from './app.component';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
-import { HeroesComponent } from './heroes.component';
-import { DashboardComponent } from './dashboard.component';
-import { HeroDetailComponent } from './hero-detail.component'
 
-import { HeroService } from './hero.service'
+// Imports for loading & configuring the in-memory web api
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
+
+import { AppComponent } from './app.component';
+import { DashboardComponent } from './dashboard.component';
+import { HeroesComponent } from './heroes.component';
+import { HeroDetailComponent } from './hero-detail.component';
+import { HeroService } from './hero.service';
+import { HeroSearchComponent } from './hero-search.component';
 
 /** 
  * NgModules help organize an application into cohesive blocks of functionality.
@@ -21,26 +25,22 @@ import { HeroService } from './hero.service'
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
+    InMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule
   ],
-
-  //Every component must be declared in one—and only one—Angular module (in this case, AppModule).
   declarations: [
     AppComponent,
     DashboardComponent,
+    HeroDetailComponent,
     HeroesComponent,
-    HeroDetailComponent
+    HeroSearchComponent
   ],
-
   /**
      * The providers array tells Angular to create a fresh instance of the HeroService when it creates an AppComponent.
      * The AppComponent, as well as its child components, can use that service to get hero data.
      */
   providers: [HeroService],
-
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
-export class AppModule {
-  
-}
-
+export class AppModule { }
